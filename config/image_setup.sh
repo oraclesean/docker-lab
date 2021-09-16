@@ -1,0 +1,37 @@
+#!/bin/bash
+mkdir ~/logs
+logfile=~/logs/image_setup.log
+
+image_source=$1
+dbsw_url=$2
+dbsw_filename=$3
+docker_repo_name=$4
+docker_repo_path=$5
+db_version=$6
+image_url=$7
+image_id=$8
+image_tag=$9
+#container_registry_link=$10
+#container_registry_user=$11
+#container_registry_pass=$12
+
+printf "\nBegin image_setup.sh at %s\n" "$(date)"
+
+case "$image_source" in
+  Build)    curl -X GET ${dbsw_url}/${dbsw_filename} -o ~/${docker_repo_name}/${docker_repo_path}/${db_version}/${dbsw_filename} | tee -a  $logfile
+            cd ~/${docker_repo_name}/${docker_repo_path}
+            ./buildContainerImage.sh -v ${db_version} -e | tee -a $logfile
+            ;;
+#  Registry)
+#            ;;
+  *)
+            curl -X GET ${image_url}/${image_id}.tar -o ~/${image_id}.tar | tee -a $logfile
+            docker load -i ~/${image_id}.tar | tee -a $logfile
+            docker tag ${image_id} ${image_tag} | tee -a $logfile
+            rm ~/${image_id}.tar
+            ;;
+esac
+
+docker images
+
+printf "\nEnd image_setup.sh at %s\n" "$(date)"
