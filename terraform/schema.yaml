@@ -1,0 +1,179 @@
+title: "Run Oracle Databases on Docker in Oracle Cloud Infrastructure"
+description: "A lab environment for running an Oracle Database on Docker using Always Free Oracle Cloud Infrastructure"
+schemaVersion: 1.1.0
+version: "20190304"
+locale: "en"
+
+variableGroups:
+  - title: "General Configuration"
+    visible: false
+    variables:
+      - ${tenancy_ocid}
+      - ${compartment_ocid}
+      - ${region}
+      - ${user_ocid}
+      - ${fingerprint}
+      - ${private_key_path}
+      - ${private_key_password}
+      - ${private_key}
+  - title: "Lab Configuration"
+    visible: true
+    variables:
+      - ${lab_name}
+      - ${ssh_public_key}
+      - instance_shape
+      - ${show_advanced}
+  - title: "Advanced Settings"
+    variables:
+      - ${image_source}
+      - ${container_registry_user}
+      - ${container_registry_pass}
+      - ${db_version}
+      - ${edition}
+      - ${run_container}
+      - ${container_name}
+      - ${oracle_sid}
+      - ${oracle_pdb}
+      - ${database_password}
+      - ${docker_tns_port}
+
+variables:
+  lab_name:
+    title: "Lab Name"
+    type: string
+    required: false
+    default: "docker-lab"
+    visible: true
+  ssh_public_key:
+    title: "SSH Public Key"
+    description: "The public key to install on the compute for SSH access."
+    type: oci:core:ssh:publickey
+    required: false
+  instance_shape:
+    title: "Instance Shape"
+    description: "Select a shape for the compute instance"
+    type: enum
+    required: false
+    default: "VM.Standard.E2.1.Micro"
+    enum:
+      - "VM.Standard2.1"
+      - "VM.Standard2.2"
+      - "VM.Standard2.4"
+      - "VM.Standard2.8"
+      - "VM.Standard.E2.1.Micro"
+  show_advanced:
+    title: "Show advanced options?"
+    description: "Shows advanced options for configuring Docker installation, database image builds, and container creation."
+    type: boolean
+    visible: true
+    default: false
+  image_source:
+    title: "Docker Image Source"
+    description: "Select how the Docker database image will be created: pull from Lab resources, pull from Oracle Container Registry, or build from the Oracle Docker Images repository"
+    type: enum
+    required: false
+    visible: show_advanced
+    default: "Lab"
+    enum:
+      - "Lab"
+#      - "Registry"
+      - "Build"
+  container_registry_user:
+    title: "Oracle Container Registry Username"
+    description: "The MOS or OTN username for login to Oracle Container Registry; you must login and accept the license agreement for the Oracle Database Docker images beforehand."
+    type: string
+    required: false
+    visible:
+      eq:
+        - ${image_source}
+        - "Registry"
+  container_registry_pass:
+    title: "Oracle Container Registry Password"
+    description: "The MOS or OTN password for login to Oracle Container Registry; you must login and accept the license agreement for the Oracle Database Docker images beforehand."
+    type: password
+    required: false
+    visible:
+      eq:
+        - ${image_source}
+        - "Registry"
+  db_version:
+    title: "Database Version"
+    description: "The database version to install"
+    type: enum
+    required: false
+    visible:
+      not:
+        - ${image_source}
+        - "Lab"
+    default: "19.3.0"
+    enum:
+      - "19.3.0"
+      - "21.3.0"
+  edition:
+    title: "Database Edition"
+    description: "The database edition (Standard, Enterprise) to build."
+    type: enum
+    required: false
+    visible:
+      not:
+        - ${image_source}
+        - "Lab"
+    default: "Enterprise"
+    enum:
+      - "Enterprise"
+      - "Standard"
+  run_container:
+    title: "Run a container?"
+    description: "True causes the provisioning process to create a database container using 'docker run'. Set to false to work through the lab steps. (Adds ~20 minutes to the provisioning time)"
+    type: boolean
+    visible: show_advanced
+    required: false
+    default: false
+  container_name:
+    title: "Container Name"
+    description: "Name for the Docker container"
+    type: string
+    visible: run_container
+    required: false
+    minlength: 3
+    maxlength: 30
+    pattern: "[a-zA-Z0-9][a-zA-Z0-9_.-]"
+    default: "oracledb"
+  oracle_sid:
+    title: "Database Name"
+    description: "Database SID to create"
+    type: string
+    visible: run_container
+    required: false
+    minlength: 2
+    maxlength: 12
+    pattern: "[a-zA-Z][a-zA-Z0-9_]"
+    default: "ORCLCDB"
+  oracle_pdb:
+    title: "Pluggable Database (PDB) Name"
+    description: "Pluggable database name to create"
+    type: string
+    visible: run_container
+    required: false
+    minlength: 2
+    maxlength: 12
+    pattern: "[a-zA-Z][a-zA-Z0-9_]"
+    default: "ORCLPDB"
+  database_password:
+    title: "SYS Password"
+    description: "Password for the SYS user in the new database. Leave empty to generate a random password."
+    type: string
+    visible: run_container
+    required: false
+    minLength: 12
+    maxLength: 30
+    pattern: ^[A-Za-z][A-Za-z0-9_#\$]+$
+  docker_tns_port:
+    title: "Host Port for TNS"
+    description: "Host port for mapping TNS connections from the container port 1521"
+    type: number
+    visible: run_container
+    required: false
+    minimum: 1024
+    maximum: 49151
+    default: 11521
