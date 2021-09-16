@@ -1,6 +1,6 @@
 #!/bin/bash
 mkdir ~/logs
-logfile=~/logs/image_setup.log
+logfile=~/logs/setup_image.log
 
 image_source=$1
 db_version=$2
@@ -9,7 +9,7 @@ docker_repo_path=$4
 image_url=$5
 image_id=$6
 
-printf "\nBegin image_setup.sh at %s\n" "$(date)"
+printf "\nBegin setup_image.sh at %s\n" "$(date)"
 
 case "$db_version" in
   "19.3.0" ) dbsw_filename="LINUX.X64_193000_db_home.zip"
@@ -35,4 +35,4 @@ case "$image_source" in
               ;;
 esac
 
-printf "\nEnd image_setup.sh at %s\n" "$(date)"
+printf "\nEnd setup_image.sh at %s\n" "$(date)"
