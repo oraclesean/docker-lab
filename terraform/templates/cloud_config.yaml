@@ -1,0 +1,56 @@
+#cloud-config
+output: {all: '| tee -a /var/log/cloud-init-output.log'}
+
+groups:
+  - ${docker_group}
+  - ${oracle_group}
+
+system_info:
+  default_user:
+    groups: [ ${docker_group} ]
+
+users:
+  - default
+  - name: ${oracle_user}
+    groups: [ ${oracle_group}, ${docker_group} ]
+    sudo: ["ALL=(ALL) NOPASSWD:ALL"]
+    lock_passwd: true
+  - name: ${default_user}
+    groups: [ ${oracle_group}, ${docker_group} ]
+
+yum_repos:
+  oraclelinux-developer-ol7:
+    baseurl: https://yum$ociregion.$ocidomain/repo/OracleLinux/OL7/developer/$basearch
+    name: Oracle Linux $releasever Development Packages ($basearch)
+    gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-oracle
+    gpgcheck: 1
+    enabled: 1
+  docker-ce-stable:
+    baseurl: https://download.docker.com/linux/centos/7/$basearch/stable
+    name: Docker CE Stable - \$basearch
+    gpgkey: https://download.docker.com/linux/centos/gpg
+    gpgcheck: 1
+    enabled: 1
+    priority: 1
+
+package_update: true
+package_upgrade: true
+package_reboot_if_required: true
+
+packages:
+  - git
+  - docker-ce
+  - docker-ce-cli
+
+runcmd:
+  - groupmod -g ${oracle_gid} ${oracle_group}
+  - usermod -u ${oracle_uid} ${oracle_user}
+  - mkdir ${oradata_dir} && chown ${oracle_user}:${oracle_group} ${oradata_dir} && chmod g+w ${oradata_dir}
+  - systemctl enable docker && systemctl start docker
+  - runuser -l ${default_user} -c "git clone ${lab_repo_source} ~/${lab_repo_name}"
+  - runuser -l ${default_user} -c "~/${lab_repo_name}/config/setup_repo.sh ${docker_repo_source} ${docker_repo_name} ${alpine_source} ${alpine_basename}"
+  - runuser -l ${default_user} -c "~/${lab_repo_name}/config/setup_image.sh ${image_source} ${db_version} ${docker_repo_name} ${docker_repo_path} ${image_url} ${image_id}"
+  - runuser -l ${default_user} -c "docker images"
+  - runuser -l ${default_user} -c "${run_container} && ~/${lab_repo_name}/config/setup_container.sh ${db_version} ${container_name} ${docker_tns_port} ${oracle_sid} ${oracle_pdb} ${database_password} ${oradata_dir}"
+
+final_message: "Installation complete at $UPTIME seconds"
