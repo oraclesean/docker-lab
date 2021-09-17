@@ -1,12 +1,7 @@
-# Tenancy variables
-tenancy_ocid = ""
-user_ocid = ""
-region = ""
-
 # SSH variables
-private_key_path = ""
-ssh_public_key = ""
-fingerprint = ""
+#private_key_path = ""
+#ssh_public_key = ""
+#fingerprint = ""
 
 # Lab variables
 alpine_basename         = "alpine-minirootfs-3.14.0-x86_64"
