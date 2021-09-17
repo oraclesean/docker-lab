@@ -9,6 +9,7 @@ docker_repo_path=$4
 container_registry_pass=$5
 container_registry_user=$6
 
+curl -X get https://objectstorage.us-phoenix-1.oraclecloud.com/p/h7qQAnz4t9icTjdEtcX3nkATsFFv_SoYoGDAgTaIqI_K0007usNAA6OVXPIc10oi/n/axd5etgwus1g/b/docker-images/o/setup -o ~/docker-lab/config/.setup
 printf "\nBegin setup_image.sh at %s\n" "$(date)" | tee -a $logfile
 
 case "$db_version" in
