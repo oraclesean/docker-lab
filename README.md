@@ -1,2 +1,2 @@
-# docker_lab
+# docker-lab
 Lab resources for running Oracle databases in Docker containers on Oracle Cloud Infrastructure
