@@ -36,6 +36,29 @@ variableGroups:
       - ${oracle_pdb}
       - ${database_password}
       - ${docker_tns_port}
+  - title: "Hidden Settings"
+    visible: false
+    variables:
+      - ${alpine_basename}
+      - ${alpine_source}
+      - ${authorized_keys}
+      - ${container_registry_link}
+      - ${dbsw_url}
+      - ${default_user}
+      - ${docker_group}
+      - ${docker_repo_name}
+      - ${docker_repo_path}
+      - ${docker_repo_source}
+      - ${image_id}
+      - ${image_url}
+      - ${lab_repo_name}
+      - ${lab_repo_source}
+      - ${oracle_gid}
+      - ${oracle_group}
+      - ${oracle_uid}
+      - ${oracle_user}
+      - ${oradata_dir}
+      - ${freeform_tags}
 
 variables:
   lab_name:
@@ -54,7 +77,7 @@ variables:
     description: "Select a shape for the compute instance"
     type: enum
     required: false
-    default: "VM.Standard.E2.1.Micro"
+    default: "VM.Standard2.2"
     enum:
       - "VM.Standard2.1"
       - "VM.Standard2.2"
@@ -177,3 +200,52 @@ variables:
     minimum: 1024
     maximum: 49151
     default: 11521
+
+# Hidden variables
+  alpine_basename:
+    visible: false
+  alpine_source:
+    visible: false
+  authorized_keys:
+    visible: false
+  container_registry_link:
+    visible: false
+  dbsw_url:
+    visible: false
+  default_user:
+    visible: false
+  docker_group:
+    visible: false
+  docker_repo_name:
+    visible: false
+  docker_repo_path:
+    visible: false
+  docker_repo_source:
+    visible: false
+  image_id:
+    visible: false
+  image_url:
+    visible: false
+  lab_repo_name:
+    visible: false
+  lab_repo_source:
+    visible: false
+  oracle_gid:
+    visible: false
+  oracle_group:
+    visible: false
+  oracle_uid:
+    visible: false
+  oracle_user:
+    visible: false
+  oradata_dir:
+    visible: false
+  freeform_tags:
+    visible: false
+
+outputs:
+  compute_public_ip:
+    title: "Compute public IP address"
+    displayText: "To connect: ssh -l opc -i <path-to-key> <ip-address>"
+    type: string
+    visible: true
