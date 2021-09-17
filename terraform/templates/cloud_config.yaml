@@ -47,7 +47,7 @@ runcmd:
   - usermod -u ${oracle_uid} ${oracle_user}
   - mkdir ${oradata_dir} && chown ${oracle_user}:${oracle_group} ${oradata_dir} && chmod g+w ${oradata_dir}
   - systemctl enable docker && systemctl start docker
-  - runuser -l ${default_user} -c "git clone ${lab_repo_source} ~/${lab_repo_name}"
+  - runuser -l ${default_user} -c "git clone ${lab_repo_source} ~/${lab_repo_name} && chmod u+x ~/${lab_repo_name}/config/*sh"
   - runuser -l ${default_user} -c "~/${lab_repo_name}/config/setup_repo.sh ${docker_repo_source} ${docker_repo_name} ${alpine_source} ${alpine_basename}"
   - runuser -l ${default_user} -c "~/${lab_repo_name}/config/setup_image.sh ${image_source} ${db_version} ${docker_repo_name} ${docker_repo_path} ${container_registry_pass} ${container_registry_user}"
   - runuser -l ${default_user} -c "docker images"
