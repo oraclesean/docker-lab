@@ -40,10 +40,6 @@ variable "alpine_basename" {}
 variable "authorized_keys" {
   default = ""
 }
-variable "build_db_image" {
-  type = bool
-  default = false
-}
 variable "container_name" {
   default = "oradb"
 }
@@ -74,10 +70,6 @@ variable "docker_repo_source" {
 variable "docker_tns_port" {
   type = number
   default = 11521
-}
-variable "download_labs" {
-  type = bool
-  default = true
 }
 variable "lab_repo_name" {
   default = "docker-lab"
