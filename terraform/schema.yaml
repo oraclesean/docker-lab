@@ -125,9 +125,9 @@ variables:
     type: enum
     required: false
     visible:
-      not:
+      eq:
         - ${image_source}
-        - "Registry"
+        - "Build"
     default: "19.3.0"
     enum:
       - "19.3.0"
