@@ -49,7 +49,7 @@ runcmd:
   - systemctl enable docker && systemctl start docker
   - runuser -l ${default_user} -c "git clone ${lab_repo_source} ~/${lab_repo_name}"
   - runuser -l ${default_user} -c "~/${lab_repo_name}/config/setup_repo.sh ${docker_repo_source} ${docker_repo_name} ${alpine_source} ${alpine_basename}"
-  - runuser -l ${default_user} -c "~/${lab_repo_name}/config/setup_image.sh ${image_source} ${db_version} ${docker_repo_name} ${docker_repo_path} ${image_url} ${image_id}"
+  - runuser -l ${default_user} -c "~/${lab_repo_name}/config/setup_image.sh ${image_source} ${db_version} ${docker_repo_name} ${docker_repo_path} ${container_registry_pass} ${container_registry_user}"
   - runuser -l ${default_user} -c "docker images"
   - runuser -l ${default_user} -c "${run_container} && ~/${lab_repo_name}/config/setup_container.sh ${db_version} ${container_name} ${docker_tns_port} ${oracle_sid} ${oracle_pdb} ${database_password} ${oradata_dir}"
 

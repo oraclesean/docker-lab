@@ -76,7 +76,7 @@ variables:
     default: "Lab"
     enum:
       - "Lab"
-#      - "Registry"
+      - "Registry"
       - "Build"
   container_registry_user:
     title: "Oracle Container Registry Username"
@@ -102,9 +102,9 @@ variables:
     type: enum
     required: false
     visible:
-      not:
+      eq:
         - ${image_source}
-        - "Lab"
+        - "Registry"
     default: "19.3.0"
     enum:
       - "19.3.0"
@@ -115,9 +115,9 @@ variables:
     type: enum
     required: false
     visible:
-      not:
+      eq:
         - ${image_source}
-        - "Lab"
+        - "Build"
     default: "Enterprise"
     enum:
       - "Enterprise"
@@ -162,7 +162,7 @@ variables:
   database_password:
     title: "SYS Password"
     description: "Password for the SYS user in the new database. Leave empty to generate a random password."
-    type: string
+    type: password
     visible: run_container
     required: false
     minLength: 12

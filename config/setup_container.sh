@@ -1,5 +1,5 @@
 #!/bin/bash
-mkdir ~/logs
+mkdir ~/logs >/dev/null
 logfile=~/logs/setup_container.log
 
 db_version=$1

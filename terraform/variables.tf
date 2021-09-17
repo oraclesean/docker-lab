@@ -47,7 +47,6 @@ variable "build_db_image" {
 variable "container_name" {
   default = "oradb"
 }
-variable "container_registry_link" {}
 variable "container_registry_pass" {
   default = ""
 }
@@ -57,7 +56,6 @@ variable "container_registry_user" {
 variable "db_version" {
   default = "19.3.0"
 }
-variable "dbsw_url" {}
 variable "default_user" {
   default = "opc"
 }
@@ -81,8 +79,6 @@ variable "download_labs" {
   type = bool
   default = true
 }
-variable "image_id" {}
-variable "image_url" {}
 variable "lab_repo_name" {
   default = "docker-lab"
 }

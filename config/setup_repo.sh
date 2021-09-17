@@ -1,5 +1,5 @@
 #!/bin/bash
-mkdir ~/logs
+mkdir ~/logs >/dev/null
 logfile=~/logs/setup_repo.log
 
 docker_repo_source=$1
