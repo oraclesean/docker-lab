@@ -124,10 +124,10 @@ variables:
     description: "The database version to install"
     type: enum
     required: false
-    visible:
-      not:
-        - ${image_source}
-        - "Registry"
+    visible: show_advanced
+#      eq:
+#        - ${image_source}
+#        - "Registry"
     default: "19.3.0"
     enum:
       - "19.3.0"
