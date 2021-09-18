@@ -24,7 +24,7 @@ data template_file "cloud_config" {
     container_name             = var.container_name
     container_registry_pass    = var.container_registry_pass
     container_registry_user    = var.container_registry_user
-    database_password          = random_string.database_password.result
+#    database_password          = random_string.database_password.result
     db_version                 = var.db_version
     default_user               = var.default_user
     docker_group               = var.docker_group

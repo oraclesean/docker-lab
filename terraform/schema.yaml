@@ -34,7 +34,7 @@ variableGroups:
       - ${container_name}
       - ${oracle_sid}
       - ${oracle_pdb}
-      - ${database_password}
+#      - ${database_password}
       - ${docker_tns_port}
   - title: "Hidden Settings"
     visible: false
@@ -182,15 +182,15 @@ variables:
     maxlength: 12
     pattern: "[a-zA-Z][a-zA-Z0-9_]"
     default: "ORCLPDB"
-  database_password:
-    title: "SYS Password"
-    description: "Password for the SYS user in the new database. Leave empty to generate a random password."
-    type: password
-    visible: run_container
-    required: false
-    minLength: 12
-    maxLength: 30
-    pattern: ^[A-Za-z][A-Za-z0-9_#\$]+$
+#  database_password:
+#    title: "SYS Password"
+#    description: "Password for the SYS user in the new database. Leave empty to generate a random password."
+#    type: password
+#    visible: run_container
+#    required: false
+#    minLength: 12
+#    maxLength: 30
+#    pattern: ^[A-Za-z][A-Za-z0-9_#\$]+$
   docker_tns_port:
     title: "Host Port for TNS"
     description: "Host port for mapping TNS connections from the container port 1521"

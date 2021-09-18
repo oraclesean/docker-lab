@@ -11,13 +11,13 @@ resource "oci_identity_compartment" "lab_compartment" {
 #  create_duration            = "60s"
 #}
 
-resource "random_string" "database_password" {
-  depends_on                 = [ oci_identity_compartment.lab_compartment ]
-  length                     = 16
-  special                    = true
-  min_upper                  = 3
-  min_lower                  = 3
-  min_numeric                = 3
-  min_special                = 3
-  override_special           = "{}#^*<>[]%~"
-}
+#resource "random_string" "database_password" {
+#  depends_on                 = [ oci_identity_compartment.lab_compartment ]
+#  length                     = 16
+#  special                    = true
+#  min_upper                  = 3
+#  min_lower                  = 3
+#  min_numeric                = 3
+#  min_special                = 3
+#  override_special           = "{}#^*<>[]%~"
+#}

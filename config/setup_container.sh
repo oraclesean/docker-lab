@@ -12,8 +12,7 @@ container_name=$3
 docker_tns_port=$4
 oracle_sid=$5
 oracle_pdb=$6
-database_password=$7
-oradata_dir=$8
+oradata_dir=$7
 
 printf "\nBegin setup_container.sh at %s\n" "$(date)" | tee -a $logfile
 
@@ -26,7 +25,6 @@ docker run --name ${container_name} \
            -p ${docker_tns_port}:1521 \
            -e ORACLE_SID=${oracle_sid} \
            -e ORACLE_PDB=${oracle_pdb} \
-           -e ORACLE_PWD=${database_password} \
            -v ${oradata_dir}:/opt/oracle/oradata \
            ${image_tag} | tee -a $logfile
 
