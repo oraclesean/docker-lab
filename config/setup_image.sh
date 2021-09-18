@@ -4,10 +4,8 @@ logfile=~/logs/setup_image.log
 
 image_source=$1
 db_version=$2
-docker_repo_name=$3
-docker_repo_path=$4
-container_registry_pass=$5
-container_registry_user=$6
+container_registry_pass=$3
+container_registry_user=$4
 
 printf "\nBegin setup_image.sh at %s\n" "$(date)" | tee -a $logfile
 
@@ -15,8 +13,6 @@ echo $1 | tee -a $logfile
 echo $2 | tee -a $logfile
 echo $3 | tee -a $logfile
 echo $4 | tee -a $logfile
-echo $5 | tee -a $logfile
-echo $6 | tee -a $logfile
 
 case "$db_version" in
   "19.3.0" ) dbsw_filename="LINUX.X64_193000_db_home.zip"
@@ -34,8 +30,8 @@ case "$db_version" in
 esac
 
 case "$image_source" in
-  "Build")     curl -X GET ${dbsw_par}/${dbsw_filename} -o ~/${docker_repo_name}/${docker_repo_path}/${db_version}/${dbsw_filename} | tee -a  $logfile
-               cd ~/${docker_repo_name}/${docker_repo_path}
+  "Build")     curl -X GET ${dbsw_par}/${dbsw_filename} -o ~/docker-images/OracleDatabase/SingleInstance/dockerfiles/${db_version}/${dbsw_filename} | tee -a  $logfile
+               cd ~/docker-images/OracleDatabase/SingleInstance/dockerfiles
                ./buildContainerImage.sh -v ${db_version} -e | tee -a $logfile
                ;;
   "Registry" ) test -z $container_registry_user || test -z $container_registry_pass && printf "Registry username/password not set!" | tee -a $logfile

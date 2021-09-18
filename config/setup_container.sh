@@ -2,13 +2,18 @@
 mkdir ~/logs 2>/dev/null
 logfile=~/logs/setup_container.log
 
-db_version=$1
-container_name=$2
-docker_tns_port=$3
-oracle_sid=$4
-oracle_pdb=$5
-database_password=$6
-oradata_dir=$7
+run_container=$1
+  if ! [ "$run_container" ]
+then exit 0
+fi
+
+db_version=$2
+container_name=$3
+docker_tns_port=$4
+oracle_sid=$5
+oracle_pdb=$6
+database_password=$7
+oradata_dir=$8
 
 printf "\nBegin setup_container.sh at %s\n" "$(date)" | tee -a $logfile
 
