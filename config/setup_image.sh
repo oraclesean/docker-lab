@@ -9,11 +9,6 @@ container_registry_user=$4
 
 printf "\nBegin setup_image.sh at %s\n" "$(date)" | tee -a $logfile
 
-echo $1 | tee -a $logfile
-echo $2 | tee -a $logfile
-echo $3 | tee -a $logfile
-echo $4 | tee -a $logfile
-
 case "$db_version" in
   "19.3.0" ) dbsw_filename="LINUX.X64_193000_db_home.zip"
              image_tag="oracle/database:19.3.0-ee"
