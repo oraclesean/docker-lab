@@ -23,13 +23,13 @@ yum_repos:
     baseurl: https://yum$ociregion.$ocidomain/repo/OracleLinux/OL7/developer/$basearch
     name: Oracle Linux $releasever Development Packages ($basearch)
     gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-oracle
-    gpgcheck: 1
+    gpgcheck: 0
     enabled: 1
   docker-ce-stable:
     baseurl: https://download.docker.com/linux/centos/7/$basearch/stable
     name: Docker CE Stable - \$basearch
     gpgkey: https://download.docker.com/linux/centos/gpg
-    gpgcheck: 1
+    gpgcheck: 0
     enabled: 1
     priority: 1
 

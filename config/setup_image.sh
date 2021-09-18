@@ -9,21 +9,27 @@ docker_repo_path=$4
 container_registry_pass=$5
 container_registry_user=$6
 
-curl -X get https://objectstorage.us-phoenix-1.oraclecloud.com/p/h7qQAnz4t9icTjdEtcX3nkATsFFv_SoYoGDAgTaIqI_K0007usNAA6OVXPIc10oi/n/axd5etgwus1g/b/docker-images/o/setup -o ~/docker-lab/config/.setup
 printf "\nBegin setup_image.sh at %s\n" "$(date)" | tee -a $logfile
+
+echo $1 | tee -a $logfile
+echo $2 | tee -a $logfile
+echo $3 | tee -a $logfile
+echo $4 | tee -a $logfile
+echo $5 | tee -a $logfile
+echo $6 | tee -a $logfile
 
 case "$db_version" in
   "19.3.0" ) dbsw_filename="LINUX.X64_193000_db_home.zip"
              image_tag="oracle/database:19.3.0-ee"
-             image_id="$(grep 19id ~/docker-lab/config/.setup | sed 's/^.*://')"
-             image_par="https://$(grep pre ~/docker-lab/config/.setup | sed 's/^.*://')/$(grep 19di ~/docker-lab/config/.setup | sed 's/^.*://')/$(grep suf ~/docker-lab/config/.setup | sed 's/^.*://')"
-             dbsw_par="https://$(grep pre ~/docker-lab/config/.setup | sed 's/^.*://')/$(grep 19db ~/docker-lab/config/.setup | sed 's/^.*://')/$(grep suf ~/docker-lab/config/.setup | sed 's/^.*://')"
+             image_id="a91f6e77a0cd"
+             image_par="https://objectstorage.us-phoenix-1.oraclecloud.com/p/pFk5i0uLQt1XgVISGIpV8xja0H0iPlTnIhjMrltKoY0_y20KIUTrBHBCzUEOcRAT/n/axd5etgwus1g/b/docker-images/o"
+             dbsw_par="https://objectstorage.us-phoenix-1.oraclecloud.com/p/bdfYasjXXR-fUfRgwGo7T8c_rzaGqK7OP1ztjqm_ciGrijlTaI0Z-hWt_UeGgKS-/n/axd5etgwus1g/b/docker-images/o"
              ;;
   "21.3.0" ) dbsw_filename="LINUX.X64_213000_db_home.zip"
              image_tag="oracle/database:21.3.0-ee"
-             image_id="$(grep 21id ~/docker-lab/config/.setup | sed 's/^.*://')"
-             image_par="https://$(grep pre ~/docker-lab/config/.setup | sed 's/^.*://')/$(grep 21di ~/docker-lab/config/.setup | sed 's/^.*://')/$(grep suf ~/docker-lab/config/.setup | sed 's/^.*://')"
-             dbsw_par="https://$(grep pre ~/docker-lab/config/.setup | sed 's/^.*://')/$(grep 21db ~/docker-lab/config/.setup | sed 's/^.*://')/$(grep suf ~/docker-lab/config/.setup | sed 's/^.*://')"
+             image_id="7925b37d58fd"
+             image_par="https://objectstorage.us-phoenix-1.oraclecloud.com/p/xJmM5dcBkq4cn20-bFwIcfPQsSajp8sVaCKuAWWShM-5Qf3i4qV2pM-IgG5rhgV3/n/axd5etgwus1g/b/docker-images/o"
+             dbsw_par="https://objectstorage.us-phoenix-1.oraclecloud.com/p/YZuOYGtVrrGBsUPh7jK-ijeK_dKKJ5Y1Av_2_rk9xS31cCPFv_F9ZMWyx8kBj9TP/n/axd5etgwus1g/b/docker-images/o"
              ;;
 esac
 
