@@ -99,7 +99,7 @@ variables:
     default: "Lab"
     enum:
       - "Lab"
-      - "Registry"
+#      - "Registry"
       - "Build"
   container_registry_user:
     title: "Oracle Container Registry Username"
