@@ -33,8 +33,9 @@ yum_repos:
 #  - containerd.io
 runcmd:
   - yum install -y yum-utils
+  - yum-config-manager --disable ol7_ksplice ol7_MySQL80*
   - yum-config-manager --enable ol7_developer ol7_developer_epel
-  - yum clean all
+  - yum clean all && yum update -y
   - yum install -y git docker-ce docker-ce-cli
   - groupmod -g ${oracle_gid} ${oracle_group}
   - usermod -u ${oracle_uid} ${oracle_user}
