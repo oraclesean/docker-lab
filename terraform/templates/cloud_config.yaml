@@ -19,31 +19,18 @@ users:
     groups: [ ${oracle_group}, ${docker_group} ]
 
 yum_repos:
-  oraclelinux-developer-ol7:
-    baseurl: https://yum$ociregion.$ocidomain/repo/OracleLinux/OL7/developer/$basearch
-    name: Oracle Linux $releasever Development Packages ($basearch)
-    gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-oracle
-    gpgcheck: 0
-    enabled: 1
   docker-ce-stable:
     baseurl: https://download.docker.com/linux/centos/7/$basearch/stable
-    name: Docker CE Stable - \$basearch
+    name: Docker CE Stable - $basearch
     gpgkey: https://download.docker.com/linux/centos/gpg
     gpgcheck: 0
     enabled: 1
-    priority: 1
-
+package_upgrade: true
 packages:
-  - yum-utils
-  - yum-config-manager
   - git
   - docker-ce
   - docker-ce-cli
-
-package_update: true
-package_upgrade: true
-package_reboot_if_required: true
-
+  - containerd.io
 runcmd:
 #  - yum-config-manager --enable ol7_developer ol7_developer_epel
 #  - yum clean all
