@@ -25,16 +25,17 @@ yum_repos:
     gpgkey: https://download.docker.com/linux/centos/gpg
     gpgcheck: 0
     enabled: 1
-package_upgrade: true
-packages:
-  - git
-  - docker-ce
-  - docker-ce-cli
-  - containerd.io
+#package_upgrade: true
+#packages:
+#  - git
+#  - docker-ce
+#  - docker-ce-cli
+#  - containerd.io
 runcmd:
-#  - yum-config-manager --enable ol7_developer ol7_developer_epel
-#  - yum clean all
-#  - yum install -y git docker-ce docker-ce-cli
+  - yum install -y yum-utils
+  - yum-config-manager --enable ol7_developer ol7_developer_epel
+  - yum clean all
+  - yum install -y git docker-ce docker-ce-cli
   - groupmod -g ${oracle_gid} ${oracle_group}
   - usermod -u ${oracle_uid} ${oracle_user}
   - mkdir ${oradata_dir} && chown ${oracle_user}:${oracle_group} ${oradata_dir} && chmod g+w ${oradata_dir}
