@@ -32,7 +32,7 @@ yum_repos:
 #  - docker-ce-cli
 #  - containerd.io
 runcmd:
-  - yum install -y yum-utils
+  - yum-config-manager --save --setopt=ol7_oci_included.skip_if_unavailable=true
   - yum-config-manager --disable ol7_ksplice ol7_MySQL80*
   - yum-config-manager --enable ol7_developer ol7_developer_epel
   - yum clean all && yum update -y

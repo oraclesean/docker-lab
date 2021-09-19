@@ -1,8 +1,13 @@
 title: "Run Oracle Databases on Docker in Oracle Cloud Infrastructure"
 description: "A lab environment for running an Oracle Database on Docker using Always Free Oracle Cloud Infrastructure"
+stackDescription: "This is an Oracle Database on Docker quickstart automation. It creates all the necessary OCI resources to run an Oracle database in a Docker container on Oracle Cloud Infrastructure using terraform."
+informationalText: "This stack provisions a new compartment, adds necessary VCN and network assets, and creates and provisions a compute instance ready to run an Oracle database in a Docker container. It optionally builds a container and prepares a database running Oracle 19.3.0 or 21.3.0."
 schemaVersion: 1.1.0
 version: "20190304"
 locale: "en"
+
+source:
+  type: quickstart
 
 variableGroups:
   - title: "General Configuration"
@@ -247,5 +252,5 @@ outputs:
   compute_public_ip:
     title: "Compute public IP address"
     displayText: "To connect: ssh -l opc -i <path-to-key> <ip-address>"
-    type: string
+    type: copyableString
     visible: true
