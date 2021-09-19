@@ -71,7 +71,7 @@ variableGroups:
 
 variables:
   accept_license:
-    title: "Accept License Agreement?"
+    title: "I have reviewed and accept the <a href='https://container-registry.oracle.com/ords/f?p=113:3:9578071367201:::RP,3:P3_REPO_ID,P3_BUSINESS_AREA_ID,P3_EULA_ID:8,0,1&cs=3uSAAi4AoeGOgVPZFzqoqMyjGZG9S4z8oALPvwP4Vb5Qq6VxLRtU65Dqj_UKham9hbmEC-miu_bIJwmUq2eD4ZQ&p_dialog_cs=6GlAZVac5rqZvJ23siprsH3_8upKEXv5HAMHJqRT5OOVaZSm57v5obazqR5KDL9aY5b87ofV0CXan3uzxHDpMA' target=_blank>Oracle Licensing Agreement</a>."
     description: "You must agree to and accept the Oracle Standard Terms and Restrictions listed on the Oracle Container Registry (https://container-registry.oracle.com) prior to running this lab. By checking this box, you affirm that you have accepted the Oracle Standard Terms and Restrictions"
     type: boolean
     default: false
