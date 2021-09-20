@@ -178,7 +178,7 @@ variables:
     default: "oracledb"
   oracle_sid:
     title: "Database Name"
-    description: "Database SID to create"
+    description: "Database SID to create. NOTE: The Oracle Docker Images repository expects the SID to be entered in UPPERCASE."
     type: string
     visible: run_container
     required: false
@@ -188,7 +188,7 @@ variables:
     default: "ORCLCDB"
   oracle_pdb:
     title: "Pluggable Database (PDB) Name"
-    description: "Pluggable database name to create"
+    description: "Pluggable database name to create. NOTE: The Oracle Docker Images repository expects the PDB name to be entered in UPPERCASE."
     type: string
     visible: run_container
     required: false
