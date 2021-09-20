@@ -259,7 +259,12 @@ variables:
 
 outputs:
   compute_public_ip:
-    title: "Compute public IP address"
-    displayText: "To connect: ssh -l opc -i <path-to-key> <ip-address>"
+    title: "Compute Public IP address"
+    displayText: "Connect to the container: ssh -l opc -i <path-to-key> <ip-address>"
     type: copyableString
     visible: true
+
+outputGroups:
+  - title: "Lab Environment Information"
+    outputs:
+      - ${compute_public_ip}
