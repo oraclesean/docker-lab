@@ -43,6 +43,18 @@ resource oci_core_security_list lab_pub_subnet_sl {
       min                        = "22"
     }
   }
+  ingress_security_rules {
+    description                = "Ingress rule for Docker TCP connections"
+    #icmp_options               = ""
+    protocol                   = "6"
+    source                     = "0.0.0.0/0"
+    source_type                = "CIDR_BLOCK"
+    stateless                  = "false"
+    tcp_options {
+      max                        = var.docker_tns_port
+      min                        = var.docker_tns_port
+    }
+  }
 #  defined_tags               = var.defined_tags
   freeform_tags              = var.freeform_tags
 }
