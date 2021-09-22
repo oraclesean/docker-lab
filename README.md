@@ -16,7 +16,7 @@ Confirm that you have accepted the License Agreement by checking the box.
 
 ![p2](/images/p2.png)
 
-Add or paste an SSH key and optionally select a shape for the compute instance.
+Add or paste an SSH key and optionally select a shape for the compute instance.  [How to generate an SSH key](https://docs.oracle.com/en/cloud/cloud-at-customer/occ-get-started/generate-ssh-key-pair.html)
 
 ![p3](/images/p3.png)
 
