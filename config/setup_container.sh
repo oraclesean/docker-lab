@@ -25,7 +25,7 @@ docker run --name ${container_name} \
            -p ${docker_tns_port}:1521 \
            -e ORACLE_SID=${oracle_sid} \
            -e ORACLE_PDB=${oracle_pdb} \
-           -v ${oradata_dir}:/opt/oracle/oradata \
+           -v ${oradata_dir}/${container_name}:/opt/oracle/oradata \
            ${image_tag} | tee -a $logfile
 
 printf "\nEnd setup_container.sh at %s\n" "$(date)" | tee -a $logfile
