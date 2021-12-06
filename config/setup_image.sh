@@ -13,14 +13,14 @@ case "$db_version" in
   "19.3.0" ) dbsw_filename="LINUX.X64_193000_db_home.zip"
              image_tag="oracle/database:19.3.0-ee"
              image_id="a91f6e77a0cd"
-             image_par="https://objectstorage.us-phoenix-1.oraclecloud.com/p/pFk5i0uLQt1XgVISGIpV8xja0H0iPlTnIhjMrltKoY0_y20KIUTrBHBCzUEOcRAT/n/axd5etgwus1g/b/docker-images/o"
-             dbsw_par="https://objectstorage.us-phoenix-1.oraclecloud.com/p/bdfYasjXXR-fUfRgwGo7T8c_rzaGqK7OP1ztjqm_ciGrijlTaI0Z-hWt_UeGgKS-/n/axd5etgwus1g/b/docker-images/o"
+             image_par="https://objectstorage.us-phoenix-1.oraclecloud.com/p/6_jVyN-10oyKbnhcMBJifHbPaN-jIX60ZBDP2GzfDqBovP6GK02fctbMgVNLzS0D/n/axd5etgwus1g/b/docker-images/o"
+             dbsw_par="https://objectstorage.us-phoenix-1.oraclecloud.com/p/snG72sirYDFDO_Db7U252SG-zqCWBdi5fF4Kqr8-RkrQ8atfsfWZqYeYDUkRtGX0/n/axd5etgwus1g/b/docker-images/o"
              ;;
   "21.3.0" ) dbsw_filename="LINUX.X64_213000_db_home.zip"
              image_tag="oracle/database:21.3.0-ee"
              image_id="7925b37d58fd"
-             image_par="https://objectstorage.us-phoenix-1.oraclecloud.com/p/xJmM5dcBkq4cn20-bFwIcfPQsSajp8sVaCKuAWWShM-5Qf3i4qV2pM-IgG5rhgV3/n/axd5etgwus1g/b/docker-images/o"
-             dbsw_par="https://objectstorage.us-phoenix-1.oraclecloud.com/p/YZuOYGtVrrGBsUPh7jK-ijeK_dKKJ5Y1Av_2_rk9xS31cCPFv_F9ZMWyx8kBj9TP/n/axd5etgwus1g/b/docker-images/o"
+             image_par="https://objectstorage.us-phoenix-1.oraclecloud.com/p/FlmIahdPJX_Ol4KVlOG9-lUFD-w0_vjzeFmpk9PYGPs_gAvbBN6hAMQQBLRqKJmQ/n/axd5etgwus1g/b/docker-images/o"
+             dbsw_par="https://objectstorage.us-phoenix-1.oraclecloud.com/p/IbJN_WObtNJd2FekvejeuiKKHQBqp2ZvLe9Q3cbqmwx7tAbvpKydOxWKwZhQWrTd/n/axd5etgwus1g/b/docker-images/o"
              ;;
 esac
 
