@@ -35,7 +35,7 @@ runcmd:
   - yum install -y git docker-ce docker-ce-cli
   - groupmod -g ${oracle_gid} ${oracle_group}
   - usermod -u ${oracle_uid} ${oracle_user}
-  - mkdir ${oradata_dir} && chown ${oracle_user}:${oracle_group} ${oradata_dir} && chmod g+w ${oradata_dir}
+  - mkdir -p ${oradata_dir}/${container_name} && chown -R ${oracle_user}:${oracle_group} ${oradata_dir} && chmod -R g+w ${oradata_dir}
   - systemctl enable docker && systemctl start docker
   - runuser -l ${default_user} -c "sed -ie '/^PATH=/ s|$|:/bin|' ~/.bash_profile"
   - runuser -l ${default_user} -c "git clone ${lab_repo_source} ~/${lab_repo_name} && chmod u+x ~/${lab_repo_name}/config/*sh"
