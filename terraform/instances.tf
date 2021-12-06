@@ -4,9 +4,10 @@ resource oci_core_instance lab_compute {
   availability_domain        = local.availability_domain
   shape                      = var.instance_shape
   metadata                   = {
-    ssh_authorized_keys        = var.ssh_public_key
+    ssh_authorized_keys        = var.generate_public_ssh_key ? tls_private_key.public_private_key_pair.public_key_openssh : join("\n", [var.public_ssh_key, tls_private_key.public_private_key_pair.public_key_openssh])
     user_data                  = base64encode(data.template_file.cloud_config.rendered)
   }
+
   agent_config {
     is_management_disabled     = "false"
     is_monitoring_disabled     = "false"
@@ -23,7 +24,6 @@ resource oci_core_instance lab_compute {
 
   source_details {
     source_id                  = data.oci_core_images.image_list.images.0.id
-#    source_id                  = oci_core_image.docker_lab_image.id
     source_type                = "image"
   }
 

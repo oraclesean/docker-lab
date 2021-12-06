@@ -29,7 +29,6 @@ variableGroups:
     visible: accept_license
     variables:
       - ${lab_name}
-      - ${ssh_public_key}
       - instance_shape
       - ${show_advanced}
   - title: "Advanced Settings"
@@ -45,6 +44,9 @@ variableGroups:
       - ${oracle_pdb}
 #      - ${database_password}
       - ${docker_tns_port}
+      - generate_public_ssh_key
+      - public_ssh_key
+
   - title: "Hidden Settings"
     visible: false
     variables:
@@ -81,11 +83,11 @@ variables:
     required: false
     default: "docker-lab"
     visible: true
-  ssh_public_key:
-    title: "SSH Public Key"
-    description: "The public key to install on the compute for SSH access."
-    type: oci:core:ssh:publickey
-    required: false
+#  ssh_public_key:
+#    title: "SSH Public Key"
+#    description: "The public key to install on the compute for SSH access."
+#    type: oci:core:ssh:publickey
+#    required: false
   instance_shape:
     title: "Instance Shape"
     description: "Select a shape for the compute instance"
@@ -104,6 +106,25 @@ variables:
     type: boolean
     visible: true
     default: false
+  generate_public_ssh_key:
+    type: boolean
+    title: "Auto generate public ssh key?"
+    required: true
+    visible:
+      and:
+        - show_advanced
+  public_ssh_key:
+    type: oci:core:ssh:publickey
+    title: "Import your own SSH public key"
+    additionalProps:
+      allowMultiple: true
+    description: "SSH key for remote access to the public IP"
+    required: false
+    visible:
+      and:
+        - show_advanced
+        - not:
+          - generate_public_ssh_key
   image_source:
     title: "Docker Image Source"
     description: "Select how the Docker database image will be created: pull from Lab resources, pull from Oracle Container Registry, or build from the Oracle Docker Images repository"

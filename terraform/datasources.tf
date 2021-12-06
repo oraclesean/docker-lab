@@ -19,6 +19,7 @@ data "oci_core_images" "image_list" {
 data template_file "cloud_config" {
   template                   = file("${path.module}/templates/cloud_config.yaml")
   vars                       = {
+    public_key_openssh         = tls_private_key.public_private_key_pair.public_key_openssh
     alpine_basename            = var.alpine_basename
     alpine_source              = var.alpine_source
     container_name             = var.container_name

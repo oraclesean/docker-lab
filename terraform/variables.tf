@@ -19,10 +19,12 @@ variable "private_key_path" {
 variable "private_key_password" {
   default = ""
 }
-variable "ssh_public_key" {
+variable "generate_public_ssh_key" {
+  default = true
+}
+variable "public_ssh_key" {
   default = ""
 }
-
 # Infrastructure settings
 variable "lab_name" {
   default = "docker-lab"
